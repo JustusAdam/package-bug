@@ -5,33 +5,22 @@ import Html exposing (text, Html)
 
 
 type alias Model =
-  { package   : Package
+  { proxy : Thing
   }
 
-type alias Package =
-  { summary : String
+type alias Thing =
+  { package   : String
   }
 
 
 view : Model -> Html
-view model = packageDisplay model.package
-
-
-packageDisplay : Package -> Html
-packageDisplay {summary} = text summary
+view model = text model.proxy.package
 
 -- SIGNALS
 
-initialModel =
-  { package = { summary = "hello" }
-  }
-
 
 main : Signal Html
--- this crashed
 main = Signal.constant <| view modelPort
--- this doesn't
--- main = Signal.constant <| view initialModel
 
 
 port modelPort : Model
